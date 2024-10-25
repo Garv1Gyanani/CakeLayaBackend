@@ -18,10 +18,8 @@ public class OfferController {
     @Autowired
     private OfferRepository offerRepo;
 
-    // Create a new offer for a specific shop
     @PostMapping
     public ResponseEntity<Offer> createOffer(@PathVariable String shopId, @RequestBody Offer offer) {
-        // Set the shopId in the offer
         offer.setShopId(shopId);
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
         offer.setCreatedAt(currentTime);
@@ -34,7 +32,6 @@ public class OfferController {
         }
     }
 
-    // Retrieve all offers for a specific shop
     @GetMapping
     public ResponseEntity<List<Offer>> getAllOffers(@PathVariable String shopId) {
         List<Offer> offers = offerRepo.findByShopId(shopId);
@@ -44,7 +41,6 @@ public class OfferController {
         return new ResponseEntity<>(offers, HttpStatus.OK);
     }
 
-    // Retrieve a specific offer by offerId
     @GetMapping("/{offerId}")
     public ResponseEntity<Offer> getOfferById(@PathVariable String shopId, @PathVariable String offerId) {
         return offerRepo.findById(offerId)
@@ -53,5 +49,4 @@ public class OfferController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    // Add more methods as needed, such as updating or deleting offers...
 }

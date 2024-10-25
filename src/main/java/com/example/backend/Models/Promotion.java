@@ -11,8 +11,8 @@ public class Promotion {
     @Id
     private String id;
     
-    private String shopId; // Foreign key linking to the Shop
-    private List<String> bannerUrls; // List of image URLs for the banners
+    private String shopId; 
+    private List<String> bannerUrls; 
     
     private String createdAt;
     private String updatedAt;

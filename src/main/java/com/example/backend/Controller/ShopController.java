@@ -22,7 +22,6 @@ public class ShopController {
 
     @PostMapping
     public ResponseEntity<Shop> createShop(@RequestBody Shop shop) {
-        // Validate input fields
         if (shop.getShopName() == null || shop.getShopName().isEmpty() || 
             shop.getFssaiLicenseNumber() == null || shop.getFssaiLicenseNumber().isEmpty() || 
             shop.getCommissionPercentage() == null || shop.getCommissionPercentage() <= 0) {
@@ -37,25 +36,24 @@ public class ShopController {
             Shop savedShop = shopRepo.save(shop);
             return new ResponseEntity<>(savedShop, HttpStatus.CREATED);
         } catch (Exception e) {
-            // Log the exception (consider using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/current/id") // New endpoint to get current shop ID
+    @GetMapping("/current/id") 
     public ResponseEntity<Map<String, String>> getCurrentShopId() {
         List<Shop> shops = shopRepo.findAll();
         if (shops.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        Shop currentShop = shops.get(shops.size() - 1); // Get the last shop created
+        Shop currentShop = shops.get(shops.size() - 1);
         Map<String, String> response = new HashMap<>();
-        response.put("id", currentShop.getId()); // Wrap the ID in a JSON object
-        return new ResponseEntity<>(response, HttpStatus.OK); // Return the JSON object
+        response.put("id", currentShop.getId()); 
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}") // Endpoint for getting a shop by ID
+    @GetMapping("/{id}") 
     public ResponseEntity<Shop> getShopById(@PathVariable String id) {
         return shopRepo.findById(id)
             .map(shop -> new ResponseEntity<>(shop, HttpStatus.OK))
@@ -71,7 +69,6 @@ public class ShopController {
     public ResponseEntity<Shop> updateShop(@PathVariable String id, @RequestBody Shop shopDetails) {
         return shopRepo.findById(id)
             .map(shop -> {
-                // Update only the fields that can be modified
                 shop.setShopName(shopDetails.getShopName());
                 shop.setFssaiLicenseNumber(shopDetails.getFssaiLicenseNumber());
                 shop.setCommissionPercentage(shopDetails.getCommissionPercentage());

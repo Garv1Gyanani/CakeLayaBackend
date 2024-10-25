@@ -9,12 +9,11 @@ public class Shop {
     private String id;
     private String shopName;
     private String fssaiLicenseNumber;
-    private Double commissionPercentage; // Allow null by using Double
+    private Double commissionPercentage;
     private String shopPhotoUrl;
     private PackagingDelivery packagingDelivery;
-    private String createdAt; // Corrected capitalization
-    private String updatedAt; // Corrected capitalization
-
+    private String createdAt; 
+    private String updatedAt;
     // Getters and Setters
     public String getId() {
         return id;

@@ -15,17 +15,15 @@ public class PromotionController {
     @Autowired
     private PromotionService promotionService;
 
-    // Get all promotions for a specific shop
     @GetMapping("/shop/{shopId}")
     public ResponseEntity<List<Promotion>> getPromotionsByShopId(@PathVariable String shopId) {
         List<Promotion> promotions = promotionService.getPromotionsByShopId(shopId);
         return ResponseEntity.ok(promotions);
     }
 
-    // Add a new promotion for a shop
     @PostMapping("/shop/{shopId}")
     public ResponseEntity<Promotion> createPromotion(@PathVariable String shopId, @RequestBody Promotion promotion) {
-        promotion.setShopId(shopId); // Set the shopId (foreign key) to the promotion
+        promotion.setShopId(shopId); 
         Promotion createdPromotion = promotionService.createPromotion(promotion);
         return ResponseEntity.ok(createdPromotion);
     }

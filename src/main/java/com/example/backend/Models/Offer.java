@@ -10,7 +10,7 @@ public class Offer {
     private double productDiscount;
     private String promocode;
     private String createdAt;
-    private String shopId; // Foreign key reference to the Shop
+    private String shopId; 
 
     public Offer() {}
 

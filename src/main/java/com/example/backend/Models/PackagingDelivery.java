@@ -1,13 +1,12 @@
 package com.example.backend.Models;
 
 public class PackagingDelivery {
-    private Integer deliveryTime; // Delivery time in minutes
-    private Integer deliveryRadius; // Delivery radius in kilometers
-    private Integer freeDeliveryRadius; // Free delivery radius in kilometers
-    private Double orderValueAbove500; // Delivery cost above certain order value
-    private Double orderValueBelow500; // Delivery cost below certain order value
+    private Integer deliveryTime; 
+    private Integer deliveryRadius;
+    private Integer freeDeliveryRadius; 
+    private Double orderValueAbove500; 
+    private Double orderValueBelow500;
 
-    // Getters and Setters
     public Integer getDeliveryTime() {
         return deliveryTime;
     }
